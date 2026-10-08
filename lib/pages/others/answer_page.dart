@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -6,7 +8,7 @@ import 'package:user_auth_crudd10/pages/others/folderAns_page.dart';
 import 'package:user_auth_crudd10/services/providers/storage_ans_provider.dart';
 
 class AnswerPage extends StatefulWidget {
-  AnswerPage({super.key});
+  const AnswerPage({super.key});
 
   @override
   State<AnswerPage> createState() => _AnswerPageState();
@@ -68,7 +70,8 @@ class _AnswerPageState extends State<AnswerPage> {
   void _handleExternalWallet(ExternalWalletResponse response) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-          content: Text("External wallet selected: ${response.walletName}")),
+        content: Text("External wallet selected: ${response.walletName}"),
+      ),
     );
   }
 
@@ -85,9 +88,8 @@ class _AnswerPageState extends State<AnswerPage> {
     try {
       _razorpay.open(options);
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Error: $e")),
-      );
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Error: $e")));
     }
   }
 
@@ -95,8 +97,10 @@ class _AnswerPageState extends State<AnswerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder(
-        future: Provider.of<StorageAnsProvider>(context, listen: false)
-            .fetchAnsItems('answer/'),
+        future: Provider.of<StorageAnsProvider>(
+          context,
+          listen: false,
+        ).fetchAnsItems('answer/'),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -210,7 +214,8 @@ class _AnswerPageState extends State<AnswerPage> {
                                 } else {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
-                                        content: Text("Item path is null")),
+                                      content: Text("Item path is null"),
+                                    ),
                                   );
                                 }
                               },
@@ -219,8 +224,12 @@ class _AnswerPageState extends State<AnswerPage> {
                                 width: 100,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(12),
-                                  color:
-                                      const Color.fromARGB(40, 158, 158, 158),
+                                  color: const Color.fromARGB(
+                                    40,
+                                    158,
+                                    158,
+                                    158,
+                                  ),
                                 ),
                                 child: Column(
                                   children: [
@@ -234,7 +243,8 @@ class _AnswerPageState extends State<AnswerPage> {
                                     const SizedBox(height: 15),
                                     Padding(
                                       padding: const EdgeInsets.symmetric(
-                                          horizontal: 5),
+                                        horizontal: 5,
+                                      ),
                                       child: Text(
                                         item.name.toUpperCase(),
                                         style: GoogleFonts.inter(

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously, deprecated_member_use
+
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -8,7 +10,7 @@ import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
 class FolderPage extends StatefulWidget {
   final String path;
 
-  FolderPage({required this.path});
+  const FolderPage({super.key, required this.path});
 
   @override
   State<FolderPage> createState() => _FolderPageState();
@@ -20,19 +22,23 @@ class _FolderPageState extends State<FolderPage> {
     return WillPopScope(
       onWillPop: () async {
         // Fetch items for the previous directory on back navigation
-        final previousPath =
-            widget.path.substring(0, widget.path.lastIndexOf('/'));
-        await Provider.of<StorageProvider>(context, listen: false)
-            .fetchItems(previousPath);
+        final previousPath = widget.path.substring(
+          0,
+          widget.path.lastIndexOf('/'),
+        );
+        await Provider.of<StorageProvider>(
+          context,
+          listen: false,
+        ).fetchItems(previousPath);
         return true;
       },
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Study your favourite subject!'),
-        ),
+        appBar: AppBar(title: const Text('Study your favourite subject!')),
         body: FutureBuilder(
-          future: Provider.of<StorageProvider>(context, listen: false)
-              .fetchItems(widget.path),
+          future: Provider.of<StorageProvider>(
+            context,
+            listen: false,
+          ).fetchItems(widget.path),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
@@ -47,15 +53,11 @@ class _FolderPageState extends State<FolderPage> {
                       padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
                       child: Card(
                         child: ListTile(
-                          leading: Icon(item.isFolder
-                              ? Icons.folder
-                              : Icons.picture_as_pdf),
-                          title: Text(
-                            item.name.toUpperCase(),
+                          leading: Icon(
+                            item.isFolder ? Icons.folder : Icons.picture_as_pdf,
                           ),
-                          trailing: const Icon(
-                            Icons.arrow_forward_ios_rounded,
-                          ),
+                          title: Text(item.name.toUpperCase()),
+                          trailing: const Icon(Icons.arrow_forward_ios_rounded),
                           onTap: () {
                             if (item.isFolder) {
                               Navigator.push(
@@ -88,9 +90,7 @@ class _FolderPageState extends State<FolderPage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => PdfViewerPage(
-          document: document,
-        ),
+        builder: (context) => PdfViewerPage(document: document),
       ),
     );
   }

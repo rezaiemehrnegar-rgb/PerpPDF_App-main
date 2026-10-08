@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously, non_constant_identifier_names, avoid_types_as_parameter_names, deprecated_member_use, file_names
+
 import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -18,24 +20,26 @@ class _FolderAnsPageState extends State<FolderAnsPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        final previousPath =
-            widget.anspath.substring(0, widget.anspath.lastIndexOf('/'));
-        await Provider.of<StorageAnsProvider>(context, listen: false)
-            .fetchAnsItems(previousPath);
+        final previousPath = widget.anspath.substring(
+          0,
+          widget.anspath.lastIndexOf('/'),
+        );
+        await Provider.of<StorageAnsProvider>(
+          context,
+          listen: false,
+        ).fetchAnsItems(previousPath);
         return true;
       },
       child: Scaffold(
-        appBar: AppBar(
-          title: Text("Get All Correct Solutions"),
-        ),
+        appBar: AppBar(title: Text("Get All Correct Solutions")),
         body: FutureBuilder(
-          future: Provider.of<StorageAnsProvider>(context, listen: false)
-              .fetchAnsItems(widget.anspath),
+          future: Provider.of<StorageAnsProvider>(
+            context,
+            listen: false,
+          ).fetchAnsItems(widget.anspath),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
+              return Center(child: CircularProgressIndicator());
             }
             return Consumer<StorageAnsProvider>(
               builder: (context, StorageAnsProvider, child) {
@@ -47,15 +51,11 @@ class _FolderAnsPageState extends State<FolderAnsPage> {
                       padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
                       child: Card(
                         child: ListTile(
-                          leading: Icon(item.isFolder
-                              ? Icons.folder
-                              : Icons.picture_as_pdf),
-                          title: Text(
-                            item.name.toUpperCase(),
+                          leading: Icon(
+                            item.isFolder ? Icons.folder : Icons.picture_as_pdf,
                           ),
-                          trailing: Icon(
-                            Icons.arrow_forward_ios_rounded,
-                          ),
+                          title: Text(item.name.toUpperCase()),
+                          trailing: Icon(Icons.arrow_forward_ios_rounded),
                           onTap: () {
                             if (item.isFolder) {
                               Navigator.push(
@@ -88,10 +88,6 @@ void _openPdf(BuildContext context, String path) async {
   final document = await PDFDocument.fromURL(pdfUrl);
   Navigator.push(
     context,
-    MaterialPageRoute(
-      builder: (context) => PdfViewerPage(
-        document: document,
-      ),
-    ),
+    MaterialPageRoute(builder: (context) => PdfViewerPage(document: document)),
   );
 }

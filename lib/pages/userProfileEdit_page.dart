@@ -1,9 +1,13 @@
+// ignore_for_file: use_build_context_synchronously, library_private_types_in_public_api, file_names
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class UserProfileEdit extends StatefulWidget {
+  const UserProfileEdit({super.key});
+
   @override
   _UserProfileEditState createState() => _UserProfileEditState();
 }
@@ -25,8 +29,10 @@ class _UserProfileEditState extends State<UserProfileEdit> {
   void _loadUserData() async {
     User? user = auth.currentUser;
     if (user != null) {
-      DocumentSnapshot userData =
-          await firestore.collection('users').doc(user.uid).get();
+      DocumentSnapshot userData = await firestore
+          .collection('users')
+          .doc(user.uid)
+          .get();
       Map<String, dynamic> data = userData.data() as Map<String, dynamic>;
       _nameController.text = data['userName'] ?? '';
       _yearController.text = data['year'] ?? '';
@@ -98,10 +104,7 @@ class _UserProfileEditState extends State<UserProfileEdit> {
         backgroundColor: Colors.transparent,
         title: Text(
           "Edit Profile",
-          style: GoogleFonts.inter(
-            fontWeight: FontWeight.w500,
-            fontSize: 22,
-          ),
+          style: GoogleFonts.inter(fontWeight: FontWeight.w500, fontSize: 22),
         ),
         centerTitle: true,
       ),
@@ -117,16 +120,15 @@ class _UserProfileEditState extends State<UserProfileEdit> {
                 showCursor: true,
                 decoration: InputDecoration(
                   labelText: 'Name',
-                  labelStyle:
-                      TextStyle(color: Theme.of(context).colorScheme.secondary),
+                  labelStyle: TextStyle(
+                    color: Theme.of(context).colorScheme.secondary,
+                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(
-                      color: Colors.deepPurple,
-                    ),
+                    borderSide: BorderSide(color: Colors.deepPurple),
                   ),
                 ),
                 validator: (value) {
@@ -143,16 +145,15 @@ class _UserProfileEditState extends State<UserProfileEdit> {
                 controller: _yearController,
                 decoration: InputDecoration(
                   labelText: 'Year',
-                  labelStyle:
-                      TextStyle(color: Theme.of(context).colorScheme.secondary),
+                  labelStyle: TextStyle(
+                    color: Theme.of(context).colorScheme.secondary,
+                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(
-                      color: Colors.deepPurple,
-                    ),
+                    borderSide: BorderSide(color: Colors.deepPurple),
                   ),
                 ),
                 validator: (value) {
@@ -168,14 +169,10 @@ class _UserProfileEditState extends State<UserProfileEdit> {
                 child: ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor: WidgetStateProperty.all(Colors.deepPurple),
-                    padding: const WidgetStatePropertyAll(
-                      EdgeInsets.all(16),
-                    ),
+                    padding: const WidgetStatePropertyAll(EdgeInsets.all(16)),
                   ),
                   onPressed: _showConfirmationDialog,
-                  child: const Text(
-                    'Save Changes',
-                  ),
+                  child: const Text('Save Changes'),
                 ),
               ),
             ],

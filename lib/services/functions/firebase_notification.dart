@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, prefer_interpolation_to_compose_strings
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 class FirbaseApi {

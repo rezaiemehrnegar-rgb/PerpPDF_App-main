@@ -3,9 +3,5 @@ class StorageItem {
   final bool isFolder;
   final String? path;
 
-  StorageItem({
-    required this.name,
-    required this.isFolder,
-    this.path,
-  });
+  StorageItem({required this.name, required this.isFolder, this.path});
 }

@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:user_auth_crudd10/services/providers/storage_answer_item.dart';
@@ -12,13 +14,23 @@ class StorageAnsProvider extends ChangeNotifier {
     _ansItem = [];
     final ListResult ansresult = await ansstorage.ref(Path).listAll();
     for (var prefix in ansresult.prefixes) {
-      _ansItem.add(StorageAnswerItem(
-          name: prefix.name, isFolder: true, path: prefix.fullPath));
+      _ansItem.add(
+        StorageAnswerItem(
+          name: prefix.name,
+          isFolder: true,
+          path: prefix.fullPath,
+        ),
+      );
     }
 
     for (var file in ansresult.items) {
-      _ansItem.add(StorageAnswerItem(
-          name: file.name, isFolder: false, path: file.fullPath));
+      _ansItem.add(
+        StorageAnswerItem(
+          name: file.name,
+          isFolder: false,
+          path: file.fullPath,
+        ),
+      );
     }
     notifyListeners();
   }

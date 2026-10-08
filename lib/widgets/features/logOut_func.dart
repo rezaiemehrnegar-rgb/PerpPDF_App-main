@@ -1,11 +1,10 @@
+// ignore_for_file: camel_case_types, file_names
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class logOutFunc extends StatelessWidget {
-  const logOutFunc({
-    super.key,
-    required this.auth,
-  });
+  const logOutFunc({super.key, required this.auth});
 
   final FirebaseAuth auth;
 
@@ -24,10 +23,7 @@ class logOutFunc extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.transparent,
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(
-              color: Colors.red,
-              width: 0.7,
-            ),
+            border: Border.all(color: Colors.red, width: 0.7),
           ),
           child: const Text(
             "Logout",

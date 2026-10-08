@@ -27,10 +27,7 @@ class _ProfilePageState extends State<ProfilePage> {
         backgroundColor: Colors.transparent,
         title: Text(
           "Profile Page",
-          style: GoogleFonts.inter(
-            fontWeight: FontWeight.w500,
-            fontSize: 22,
-          ),
+          style: GoogleFonts.inter(fontWeight: FontWeight.w500, fontSize: 22),
         ),
         // actions: [
         //   IconButton(
@@ -48,25 +45,17 @@ class _ProfilePageState extends State<ProfilePage> {
         centerTitle: true,
       ),
       body: currentUser == null
-          ? const Center(
-              child: Text('No User Logged in'),
-            )
+          ? const Center(child: Text('No User Logged in'))
           : FutureBuilder<DocumentSnapshot>(
               future: authData.collection('users').doc(currentUser.uid).get(),
               builder: (context, userSnapshot) {
                 if (userSnapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
+                  return const Center(child: CircularProgressIndicator());
                 } else if (userSnapshot.hasError) {
-                  return const Center(
-                    child: Text("Error fetching user data"),
-                  );
+                  return const Center(child: Text("Error fetching user data"));
                 } else if (!userSnapshot.hasData ||
                     !userSnapshot.data!.exists) {
-                  return const Center(
-                    child: Text('User data not found'),
-                  );
+                  return const Center(child: Text('User data not found'));
                 } else {
                   var userData =
                       userSnapshot.data!.data() as Map<String, dynamic>;
@@ -143,11 +132,12 @@ class _ProfilePageState extends State<ProfilePage> {
                                           child: GestureDetector(
                                             onTap: () {
                                               Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        UserProfileEdit(),
-                                                  ));
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      UserProfileEdit(),
+                                                ),
+                                              );
                                             },
                                             child: Text(
                                               "Edit",
@@ -169,9 +159,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                             ),
                           ),
-                          const SizedBox(
-                            height: 25,
-                          ),
+                          const SizedBox(height: 25),
                           //mode section
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -183,8 +171,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                 color: Theme.of(context).colorScheme.primary,
                               ),
                               child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 20),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 20,
+                                ),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -202,26 +191,23 @@ class _ProfilePageState extends State<ProfilePage> {
                                       value: Provider.of<ThemeProvider>(context)
                                           .isDarkMode,
                                       onChanged: (value) {
-                                        Provider.of<ThemeProvider>(context,
-                                                listen: false)
-                                            .toggleTheme();
+                                        Provider.of<ThemeProvider>(
+                                          context,
+                                          listen: false,
+                                        ).toggleTheme();
                                       },
-                                      activeColor: Colors.blue,
+                                      activeThumbColor: Colors.blue,
                                     ),
                                   ],
                                 ),
                               ),
                             ),
                           ),
-                          const SizedBox(
-                            height: 25,
-                          ),
+                          const SizedBox(height: 25),
                           //about section
                           const aboutUs(),
-                          const SizedBox(
-                            height: 25,
-                          ),
-                          logOutFunc(auth: auth)
+                          const SizedBox(height: 25),
+                          logOutFunc(auth: auth),
                         ],
                       ),
                     ),

@@ -1,4 +1,6 @@
 // import 'package:cloud_firestore/cloud_firestore.dart';
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -35,11 +37,11 @@ class _RegisterPageState extends State<RegisterPage> {
   Future signUp() async {
     try {
       if (checkPassowrd()) {
-        UserCredential userCredential =
-            await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: _emailController.text.trim(),
-          password: _passwordController.text.trim(),
-        );
+        UserCredential userCredential = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(
+              email: _emailController.text.trim(),
+              password: _passwordController.text.trim(),
+            );
         User? user = userCredential.user;
         if (user != null) {
           await storeUserData(
@@ -55,9 +57,7 @@ class _RegisterPageState extends State<RegisterPage> {
             duration: const Duration(seconds: 3),
             backgroundColor: Colors.red[200],
             shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(
-                top: Radius.circular(12),
-              ),
+              borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
             ),
           ),
         );
@@ -69,9 +69,7 @@ class _RegisterPageState extends State<RegisterPage> {
           duration: const Duration(seconds: 3),
           backgroundColor: Colors.red[200],
           shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              top: Radius.circular(12),
-            ),
+            borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
           ),
         ),
       );
@@ -125,8 +123,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   right: 10,
                   bottom: 0,
                   child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 0,
+                    ),
                     child: Container(
                       height: 1200,
                       width: 350,
@@ -141,9 +141,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
                               child: Image.asset('assets/images/signup.png'),
                             ),
-                            const SizedBox(
-                              height: 15,
-                            ),
+                            const SizedBox(height: 15),
                             Text(
                               "Create an account to continue!",
                               style: GoogleFonts.lato(
@@ -152,12 +150,11 @@ class _RegisterPageState extends State<RegisterPage> {
                                 color: Colors.grey[600],
                               ),
                             ),
-                            const SizedBox(
-                              height: 30,
-                            ),
+                            const SizedBox(height: 30),
                             Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 20),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 20,
+                              ),
                               child: TextField(
                                 cursorColor: Colors.white,
                                 controller: _nameController,
@@ -178,18 +175,18 @@ class _RegisterPageState extends State<RegisterPage> {
                                   ),
                                   labelText: " Full Name ",
                                   labelStyle: TextStyle(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .secondary),
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .secondary,
+                                  ),
                                 ),
                               ),
                             ),
-                            const SizedBox(
-                              height: 20,
-                            ),
+                            const SizedBox(height: 20),
                             Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 20),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 20,
+                              ),
                               child: TextField(
                                 cursorColor: Colors.white,
                                 controller: _yearController,
@@ -210,19 +207,19 @@ class _RegisterPageState extends State<RegisterPage> {
                                   ),
                                   labelText: " Year ",
                                   labelStyle: TextStyle(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .secondary),
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .secondary,
+                                  ),
                                 ),
                               ),
                             ),
-                            const SizedBox(
-                              height: 20,
-                            ),
+                            const SizedBox(height: 20),
                             //email textfield
                             Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 20),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 20,
+                              ),
                               child: TextField(
                                 cursorColor: Colors.white,
                                 controller: _emailController,
@@ -243,20 +240,20 @@ class _RegisterPageState extends State<RegisterPage> {
                                   ),
                                   labelText: " Email ",
                                   labelStyle: TextStyle(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .secondary),
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .secondary,
+                                  ),
                                 ),
                               ),
                             ),
-                            const SizedBox(
-                              height: 20,
-                            ),
+                            const SizedBox(height: 20),
 
                             //password textfield
                             Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 20),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 20,
+                              ),
                               child: TextField(
                                 cursorColor: Colors.white,
                                 controller: _passwordController,
@@ -278,9 +275,10 @@ class _RegisterPageState extends State<RegisterPage> {
                                   ),
                                   labelText: " Password ",
                                   labelStyle: TextStyle(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .secondary),
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .secondary,
+                                  ),
                                   suffixIcon: IconButton(
                                     onPressed: () {
                                       setState(() {
@@ -291,20 +289,19 @@ class _RegisterPageState extends State<RegisterPage> {
                                       isObscure
                                           ? Icons.lock
                                           : Icons
-                                              .no_encryption_gmailerrorred_rounded,
+                                                .no_encryption_gmailerrorred_rounded,
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                            const SizedBox(
-                              height: 20,
-                            ),
+                            const SizedBox(height: 20),
 
                             //password textfield
                             Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 20),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 20,
+                              ),
                               child: TextField(
                                 cursorColor: Colors.white,
                                 controller: _confromPasswordController,
@@ -326,9 +323,10 @@ class _RegisterPageState extends State<RegisterPage> {
                                   ),
                                   labelText: " Confirm Password ",
                                   labelStyle: TextStyle(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .secondary),
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .secondary,
+                                  ),
                                   suffixIcon: IconButton(
                                     onPressed: () {
                                       setState(() {
@@ -339,7 +337,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                       isObscure
                                           ? Icons.lock
                                           : Icons
-                                              .no_encryption_gmailerrorred_rounded,
+                                                .no_encryption_gmailerrorred_rounded,
                                     ),
                                   ),
                                 ),
@@ -395,9 +393,7 @@ class _RegisterPageState extends State<RegisterPage> {
             //     ),
             //   ),
             // ),
-            const SizedBox(
-              height: 40,
-            ),
+            const SizedBox(height: 40),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 50),
               child: GestureDetector(
@@ -405,9 +401,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
-                    Image.asset(
-                      'assets/icons/ic_button.png',
-                    ),
+                    Image.asset('assets/icons/ic_button.png'),
                     Text(
                       "Sign Up",
                       style: GoogleFonts.inter(
@@ -420,9 +414,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 20,
-            ),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -433,9 +425,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-                const SizedBox(
-                  width: 10,
-                ),
+                const SizedBox(width: 10),
                 GestureDetector(
                   onTap: widget.showSignUpPage,
                   child: Text(
@@ -448,7 +438,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

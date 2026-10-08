@@ -1,5 +1,6 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -24,24 +25,18 @@ class _ForgetPassPageState extends State<ForgetPassPage> {
           duration: const Duration(seconds: 3),
           backgroundColor: Colors.green[200],
           shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              top: Radius.circular(12),
-            ),
+            borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
           ),
         ),
       );
     } on FirebaseException catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(
-            e.message.toString(),
-          ),
+          content: Text(e.message.toString()),
           duration: const Duration(seconds: 3),
           backgroundColor: Colors.red[200],
           shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              top: Radius.circular(12),
-            ),
+            borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
           ),
         ),
       );
@@ -84,8 +79,10 @@ class _ForgetPassPageState extends State<ForgetPassPage> {
                   right: 10,
                   bottom: 0,
                   child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 0,
+                    ),
                     child: Container(
                       height: 900,
                       width: 350,
@@ -100,9 +97,7 @@ class _ForgetPassPageState extends State<ForgetPassPage> {
                             padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
                             child: Image.asset('assets/images/forget_pass.png'),
                           ),
-                          const SizedBox(
-                            height: 20,
-                          ),
+                          const SizedBox(height: 20),
                           Text(
                             "Provide you account email \nfor which we wont to sent reset password Link!",
                             style: GoogleFonts.lato(
@@ -112,9 +107,7 @@ class _ForgetPassPageState extends State<ForgetPassPage> {
                             ),
                             textAlign: TextAlign.center,
                           ),
-                          const SizedBox(
-                            height: 40,
-                          ),
+                          const SizedBox(height: 40),
                           //email textfield
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -138,16 +131,15 @@ class _ForgetPassPageState extends State<ForgetPassPage> {
                                 ),
                                 labelText: " Email ",
                                 labelStyle: TextStyle(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .secondary),
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .secondary,
+                                ),
                               ),
                             ),
                           ),
 
-                          const SizedBox(
-                            height: 40,
-                          ),
+                          const SizedBox(height: 40),
 
                           //login Button
                           Padding(
@@ -157,9 +149,7 @@ class _ForgetPassPageState extends State<ForgetPassPage> {
                               child: Stack(
                                 alignment: Alignment.center,
                                 children: [
-                                  Image.asset(
-                                    'assets/icons/ic_button.png',
-                                  ),
+                                  Image.asset('assets/icons/ic_button.png'),
                                   Text(
                                     "Reset Password",
                                     style: GoogleFonts.inter(

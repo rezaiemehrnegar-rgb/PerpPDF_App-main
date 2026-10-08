@@ -25,11 +25,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         : Colors.grey;
   }
 
-  List<Widget> _pages = [
-    HomePage(),
-    AnswerPage(),
-    const ProfilePage(),
-  ];
+  final List<Widget> _pages = [HomePage(), AnswerPage(), const ProfilePage()];
 
   @override
   Widget build(BuildContext context) {
@@ -63,10 +59,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
               label: "Answers",
             ),
             BottomNavigationBarItem(
-              icon: Image.asset(
-                "assets/icons/ic_p.png",
-                color: _iconColor(2),
-              ),
+              icon: Image.asset("assets/icons/ic_p.png", color: _iconColor(2)),
               label: "Profile",
             ),
           ],

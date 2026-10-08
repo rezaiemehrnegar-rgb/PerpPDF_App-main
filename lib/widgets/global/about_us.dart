@@ -1,9 +1,9 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 
 class aboutUs extends StatelessWidget {
-  const aboutUs({
-    super.key,
-  });
+  const aboutUs({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +33,7 @@ class aboutUs extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 20,
-                        ),
+                        padding: EdgeInsets.symmetric(vertical: 20),
                         child: Text(
                           'PrepPdf',
                           style: TextStyle(
@@ -46,9 +44,7 @@ class aboutUs extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 10,
-                        ),
+                        padding: EdgeInsets.symmetric(horizontal: 10),
                         child: Text(
                           'PrepPdf offers free access to structured previous year question papers (PYQs) and solutions. Navigate seamlessly through a variety of subjects, supported by Firebase for reliable storage and real-time updates. Empowering students with essential exam resources and community insights, PrepPdf is your trusted companion for academic success.',
                           style: TextStyle(
@@ -57,13 +53,9 @@ class aboutUs extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
+                      SizedBox(height: 10),
                       Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 10,
-                        ),
+                        padding: EdgeInsets.symmetric(horizontal: 10),
                         child: Row(
                           children: [
                             Text(
@@ -77,13 +69,9 @@ class aboutUs extends StatelessWidget {
                           ],
                         ),
                       ),
-                      SizedBox(
-                        height: 5,
-                      ),
+                      SizedBox(height: 5),
                       Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 10,
-                        ),
+                        padding: EdgeInsets.symmetric(horizontal: 10),
                         child: Row(
                           children: [
                             Text(
@@ -116,16 +104,10 @@ class aboutUs extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Icon(
-                  Icons.supervised_user_circle_rounded,
-                  size: 30,
-                ),
+                Icon(Icons.supervised_user_circle_rounded, size: 30),
                 Text(
                   "About Us",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                 ),
                 SizedBox(width: 60),
                 Padding(

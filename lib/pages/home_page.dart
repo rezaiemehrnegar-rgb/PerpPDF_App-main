@@ -5,6 +5,8 @@ import 'package:user_auth_crudd10/pages/folder_page.dart';
 import 'package:user_auth_crudd10/services/providers/storage_provider.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -29,8 +31,10 @@ class _HomePageState extends State<HomePage> {
       //   automaticallyImplyLeading: false,
       // ),
       body: FutureBuilder(
-        future: Provider.of<StorageProvider>(context, listen: false)
-            .fetchItems('files/'),
+        future: Provider.of<StorageProvider>(
+          context,
+          listen: false,
+        ).fetchItems('files/'),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -100,12 +104,7 @@ class _HomePageState extends State<HomePage> {
                             child: Image.asset('assets/images/box1.png'),
                           ),
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(
-                              20,
-                              120,
-                              20,
-                              0,
-                            ),
+                            padding: const EdgeInsets.fromLTRB(20, 120, 20, 0),
                             child: TextField(
                               decoration: InputDecoration(
                                 // filled: true,
@@ -131,14 +130,12 @@ class _HomePageState extends State<HomePage> {
                   Expanded(
                     child: GridView.builder(
                       itemCount: storageProvider.items.length,
-                      padding: const EdgeInsets.only(
-                        top: 10,
-                      ),
+                      padding: const EdgeInsets.only(top: 10),
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 3 / 3.8,
-                      ),
+                            crossAxisCount: 2,
+                            childAspectRatio: 3 / 3.8,
+                          ),
                       itemBuilder: (context, index) {
                         final item = storageProvider.items[index];
                         return Padding(
